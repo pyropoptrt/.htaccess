@@ -1,0 +1,14 @@
+These are just some of the general rewrite rules for Apache 2 that I use on a regular basis. I make no guarantees that they'll work in your environment.
+
+You can contact the author:
+http://pyropoptrt.com
+
+or via email:
+lee@pyropoptrt.com
+
+
+/* -------------------------------
+
+Don't forget that you'll need to rename the file as .htaccess when you upload to your server
+
+---------------------------------- */
