@@ -1,0 +1,37 @@
+# turn the rewrite engine on
+RewriteEngine On
+
+# redirect non-www to www
+RewriteCond %{HTTP_HOST} ^domain.com
+RewriteRule (.*) http://www.domain.com/$1 [R=301,L]
+
+
+# convert php files to pretty urls (aka no extensions)
+RewriteRule ^(index|somefile|anotherfile)(/.*)?$ $1.php
+
+
+# convert html files to pretty urls (aka no extensions)
+RewriteRule ^(whatever|your-face)(/.*)?$ $1.html
+
+
+# pretty urls for pages coming off another page
+RewriteRule ^news/([A-Za-z0-9-]+)/?$ news.php?id=$1
+
+# just in case you need to go another "directory" deep
+RewriteRule ^news/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ news.php?id=$1&head=$2
+
+
+# redirect old pages
+RewriteRule ^old-page\.html$ /new-page [R=301,NC]
+
+
+# group similar pages together to redirect them
+RewriteRule ^testimonials_(customer1|customer2|customer3)(.*)?$ /testimonials [R=301,NC]
+
+
+# redirect several pages to the same page (in this case index)
+RewriteRule ^(index|home|main)(.html)?$ / [R=301,NC]
+
+
+# redirect files in a dev folder to their equivalent new location
+RewriteRule ^dev/(.*)$ /$1 [R=301,NC]
