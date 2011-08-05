@@ -35,3 +35,13 @@ RewriteRule ^(index|home|main)(.html)?$ / [R=301,NC]
 
 # redirect files in a dev folder to their equivalent new location
 RewriteRule ^dev/(.*)$ /$1 [R=301,NC]
+
+
+# put the site into maintenance mode
+RewriteCond %{REQUEST_URI} !/maintenance.html$
+
+# don't redirect my external ip address ;)
+RewriteCond %{REMOTE_HOST} !^67\.98\.241\.30
+
+# redirect everyone else to the maintenance page
+RewriteRule $ /maintenance.html [R=302,L]
