@@ -62,7 +62,11 @@ RewriteRule $ /maintenance.html [R=302,L]
 # let's try to speed up the website
 <ifModule mod_expires.c>
   ExpiresActive On
-  ExpiresByText text/css "access plus 1 week"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType text/js "access plus 1 week"
+  ExpiresByType image/gif "access plus 1 week"
+  ExpiresByType image/jpeg "access plus 1 week"
+  ExpiresByType image/jpg "access plus 1 week"
 </ifModule>
 
 # Gzip compression on static files
