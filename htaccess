@@ -56,7 +56,7 @@ RewriteRule $ /maintenance.html [R=302,L]
 
 
 # -----------------------------------------------------
-#  Speed up the website
+#  Caching and gzipping websites for speed
 # -----------------------------------------------------
 
 # let's try to speed up the website
