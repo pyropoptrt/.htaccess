@@ -1,3 +1,7 @@
+# -----------------------------------------------------
+#  Page redirects
+# -----------------------------------------------------
+
 # turn the rewrite engine on
 RewriteEngine On
 
@@ -37,6 +41,10 @@ RewriteRule ^(index|home|main)(.html)?$ / [R=301,NC]
 RewriteRule ^dev/(.*)$ /$1 [R=301,NC]
 
 
+# -----------------------------------------------------
+#  Maintenance mode
+# -----------------------------------------------------
+
 # put the site into maintenance mode
 RewriteCond %{REQUEST_URI} !/maintenance.html$
 
@@ -45,3 +53,17 @@ RewriteCond %{REMOTE_HOST} !^67\.98\.241\.30
 
 # redirect everyone else to the maintenance page
 RewriteRule $ /maintenance.html [R=302,L]
+
+
+# -----------------------------------------------------
+#  Speed up the website
+# -----------------------------------------------------
+
+# let's try to speed up the website
+<ifModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByText text/css "access plus 1 week"
+</ifModule>
+
+# Gzip compression on static files
+AddOutputFilterByType DEFALTE text/plain text/html text/xml text/css text/js
