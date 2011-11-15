@@ -92,4 +92,4 @@ RewriteRule $ /maintenance.html [R=302,L]
 </ifModule>
 
 # Gzip compression on static files
-AddOutputFilterByType DEFALTE text/plain text/html text/xml text/css text/js
+AddOutputFilterByType DEFALTE text/plain text/html text/xml text/css text/js text/javascript
