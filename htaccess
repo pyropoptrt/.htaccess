@@ -29,10 +29,14 @@ RewriteRule ^(whatever|your-face)(/.*)?$ $1.html
 
 
 # pretty urls for pages coming off another page
-RewriteRule ^news/([A-Za-z0-9-]+)/?$ news.php?id=$1
+# just learned that [\w-] is the same as [A-Za-z0-9-] (9/20/13)
+# http://stackoverflow.com/questions/7727394/htaccess-regex-allow-underscores
+RewriteRule ^news/([\w-]+)/?$ news.php?id=$1
 
 # just in case you need to go another "directory" deep
-RewriteRule ^news/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/?$ news.php?id=$1&head=$2
+# just learned that [\w-] is the same as [A-Za-z0-9-] (9/20/13)
+# http://stackoverflow.com/questions/7727394/htaccess-regex-allow-underscores
+RewriteRule ^news/([\w-]+)/([\w-]+)/?$ news.php?id=$1&head=$2
 
 
 # redirect old pages
