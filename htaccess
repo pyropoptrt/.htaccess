@@ -12,6 +12,7 @@
 #  Page redirects
 # -----------------------------------------------------
 
+<<<<<<< HEAD
 # turn the rewrite engine on
 RewriteEngine On
 
@@ -38,31 +39,41 @@ RewriteRule ^news/([\w-]+)/?$ news.php?id=$1
 # http://stackoverflow.com/questions/7727394/htaccess-regex-allow-underscores
 RewriteRule ^news/([\w-]+)/([\w-]+)/?$ news.php?id=$1&head=$2
 
-
-# redirect old pages
-RewriteRule ^old-page\.html$ /new-page [R=301,NC]
-
-
-# group similar pages together to redirect them
-RewriteRule ^testimonials_(customer1|customer2|customer3)(.*)?$ /testimonials [R=301,NC]
-
-
-# redirect several pages to the same page (in this case index)
-RewriteRule ^(index|home|main)(.html)?$ / [R=301,NC]
-
-
-# redirect files in a dev folder to their equivalent new location
-RewriteRule ^dev/(.*)$ /$1 [R=301,NC]
-
-
-# Route extension-less URLs to the equivalent *.html (can be adapted for php as well)
-# Credits go out to nathansmith
-# For instance: example.com/about = example.com/about.html
-
+=======
 <IfModule mod_rewrite.c>
   RewriteEngine On
+>>>>>>> c931233796ac8e4d15ccb6245007ec5dea46f80c
+
+  # # redirect non-www to www
+  # RewriteCond %{HTTP_HOST} ^domain.com
+  # RewriteRule (.*) http://www.domain.com/$1 [R=301,L]
+
+
+  # # pretty urls for pages multiple "directories" deep
+  # RewriteRule ^news/([^\.]+)/?$ news.php?id=$1
+  # # just in case you need to go another "directory" deep
+  # RewriteRule ^news/([^\.]+)/([^\.]+)/?$ news.php?id=$1&head=$2
+
+
+  # # redirect files in a dev folder to their equivalent new location
+  # RewriteRule ^dev/(.*)$ /$1 [R=301,NC]
+
+  # # redirect several pages to the same page (in this case index)
+  # RewriteRule ^(index|home|main)(.html)?$ / [R=301,NC]
+
+  # group similar pages together to redirect them
+  # RewriteRule ^testimonials_(customer1|customer2|customer3)(.*)?$ /testimonials [R=301,NC]
+
+  # # redirect old pages
+  # RewriteRule ^old-page\.html$ /new-page [R=301,NC]
+
+
+  # Route extension-less URLs to the equivalent *.html (can be adapted for php as well)
+  # Credits go out to nathansmith
+  # For instance: example.com/about = example.com/about.html
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^([^\.]+)$ $1.html [NC,L]
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^([^\.]+)$ $1.php [NC,L]
 </IfModule>
 
 
@@ -70,14 +81,14 @@ RewriteRule ^dev/(.*)$ /$1 [R=301,NC]
 #  Maintenance mode
 # -----------------------------------------------------
 
-# put the site into maintenance mode
-RewriteCond %{REQUEST_URI} !/maintenance.html$
-
-# don't redirect my external ip address ;)
-RewriteCond %{REMOTE_HOST} !^67\.98\.241\.30
-
-# redirect everyone else to the maintenance page
-RewriteRule $ /maintenance.html [R=302,L]
+# # put the site into maintenance mode
+# RewriteCond %{REQUEST_URI} !/maintenance.html$
+#
+# # don't redirect my external ip address ;)
+# RewriteCond %{REMOTE_HOST} !^67\.98\.241\.30
+#
+# # redirect everyone else to the maintenance page
+# RewriteRule $ /maintenance.html [R=302,L]
 
 
 # ----------------------------------------------------------------------
@@ -85,7 +96,7 @@ RewriteRule $ /maintenance.html [R=302,L]
 # ----------------------------------------------------------------------
 
 # JavaScript
-#   Normalize to standard type (it's sniffed in IE anyways) 
+#   Normalize to standard type (it's sniffed in IE anyways)
 #   tools.ietf.org/html/rfc4329#section-7.2
 AddType application/javascript         js
 
@@ -101,16 +112,16 @@ AddType video/webm                     webm
 # SVG.
 #   Required for svg webfonts on iPad
 #   twitter.com/FontSquirrel/status/14855840545
-AddType     image/svg+xml              svg svgz 
+AddType     image/svg+xml              svg svgz
 AddEncoding gzip                       svgz
-                                       
-# Webfonts                             
+
+# Webfonts
 AddType application/vnd.ms-fontobject  eot
 AddType application/x-font-ttf    ttf ttc
 AddType font/opentype                  otf
 AddType application/x-font-woff        woff
 
-# Assorted types                                      
+# Assorted types
 AddType image/x-icon                   ico
 AddType image/webp                     webp
 AddType text/cache-manifest            appcache manifest
@@ -175,7 +186,7 @@ AddType text/x-vcard                   vcf
 # These are pretty far-future expires headers.
 # They assume you control versioning with cachebusting query params like
 #   <script src="application.js?20100608">
-# Additionally, consider that outdated proxies may miscache 
+# Additionally, consider that outdated proxies may miscache
 #   www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
 
 # If you don't use filenames to version, lower the CSS  and JS to something like
@@ -190,9 +201,9 @@ AddType text/x-vcard                   vcf
 # cache.appcache needs re-requests in FF 3.6 (thanks Remy ~Introducing HTML5)
   ExpiresByType text/cache-manifest       "access plus 0 seconds"
 
-# Your document html 
+# Your document html
   ExpiresByType text/html                 "access plus 0 seconds"
-  
+
 # Data
   ExpiresByType text/xml                  "access plus 0 seconds"
   ExpiresByType application/xml           "access plus 0 seconds"
@@ -203,7 +214,7 @@ AddType text/x-vcard                   vcf
   ExpiresByType application/atom+xml      "access plus 1 hour"
 
 # Favicon (cannot be renamed)
-  ExpiresByType image/x-icon              "access plus 1 week" 
+  ExpiresByType image/x-icon              "access plus 1 week"
 
 # Media: images, video, audio
   ExpiresByType image/gif                 "access plus 1 month"
@@ -214,25 +225,25 @@ AddType text/x-vcard                   vcf
   ExpiresByType audio/ogg                 "access plus 1 month"
   ExpiresByType video/mp4                 "access plus 1 month"
   ExpiresByType video/webm                "access plus 1 month"
-  
+
 # HTC files  (css3pie)
   ExpiresByType text/x-component          "access plus 1 month"
-  
+
 # Webfonts
   ExpiresByType font/truetype             "access plus 1 month"
   ExpiresByType font/opentype             "access plus 1 month"
   ExpiresByType application/x-font-woff   "access plus 1 month"
   ExpiresByType image/svg+xml             "access plus 1 month"
   ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
-    
+
 # CSS and JavaScript
-  ExpiresByType text/css                  "access plus 1 year"
-  ExpiresByType application/javascript    "access plus 1 year"
-  
+  ExpiresByType text/css                  "access plus 1 week"
+  ExpiresByType application/javascript    "access plus 1 week"
+
   <IfModule mod_headers.c>
     Header append Cache-Control "public"
   </IfModule>
-  
+
 </IfModule>
 
 
