@@ -48,6 +48,11 @@ RewriteRule ^news/([\w-]+)/([\w-]+)/?$ news.php?id=$1&head=$2
   # RewriteCond %{HTTP_HOST} ^domain.com
   # RewriteRule (.*) http://www.domain.com/$1 [R=301,L]
 
+  # # redirect www to non-www
+  # RewriteBase /
+  # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  # RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
 
   # # pretty urls for pages multiple "directories" deep
   # RewriteRule ^news/([^\.]+)/?$ news.php?id=$1
