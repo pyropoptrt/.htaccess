@@ -12,37 +12,8 @@
 #  Page redirects
 # -----------------------------------------------------
 
-<<<<<<< HEAD
-# turn the rewrite engine on
-RewriteEngine On
-
-# redirect non-www to www
-RewriteCond %{HTTP_HOST} ^domain.com
-RewriteRule (.*) http://www.domain.com/$1 [R=301,L]
-
-
-# convert php files to pretty urls (aka no extensions)
-RewriteRule ^(index|somefile|anotherfile)(/.*)?$ $1.php
-
-
-# convert html files to pretty urls (aka no extensions)
-RewriteRule ^(whatever|your-face)(/.*)?$ $1.html
-
-
-# pretty urls for pages coming off another page
-# just learned that [\w-] is the same as [A-Za-z0-9-] (9/20/13)
-# http://stackoverflow.com/questions/7727394/htaccess-regex-allow-underscores
-RewriteRule ^news/([\w-]+)/?$ news.php?id=$1
-
-# just in case you need to go another "directory" deep
-# just learned that [\w-] is the same as [A-Za-z0-9-] (9/20/13)
-# http://stackoverflow.com/questions/7727394/htaccess-regex-allow-underscores
-RewriteRule ^news/([\w-]+)/([\w-]+)/?$ news.php?id=$1&head=$2
-
-=======
 <IfModule mod_rewrite.c>
   RewriteEngine On
->>>>>>> c931233796ac8e4d15ccb6245007ec5dea46f80c
 
   # # redirect non-www to www
   # RewriteCond %{HTTP_HOST} ^domain.com
